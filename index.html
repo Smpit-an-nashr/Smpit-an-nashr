@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMPIT AN-NASHR - Sekolah Islam Terpadu</title>
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Variabel Warna */
+        :root {
+            --primary: #2c5f8b;
+            --secondary: #f1c40f;
+            --light: #f9f9f9;
+            --dark: #333;
+            --whatsapp: #25D366;
+        }
+
+        /* Global Styles */
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #1e4b7a;
+            transform: translateY(-2px);
+        }
+
+        .btn-whatsapp {
+            background-color: var(--whatsapp);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* Registration Section */
+        .registration-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .step {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-right: 15px;
+            min-width: 30px;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--whatsapp);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background-color: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s;
+                padding: 30px;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero {
+                padding: 100px 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            section {
+                padding: 50px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">SMPIT AN-NASHR</div>
+            <nav id="navbar">
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#about">Tentang</a></li>
+                    <li><a href="#visi-misi">Visi Misi</a></li>
+                    <li><a href="#fasilitas">Fasilitas</a></li>
+                    <li><a href="#pendaftaran">Pendaftaran</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>SMPIT AN-NASHR</h1>
+            <p>Sekolah Menengah Pertama Islam Terpadu dengan Akreditasi A, membentuk generasi yang religius, berbudaya, cerdas dan terampil</p>
+            <a href="#pendaftaran" class="btn">Daftar Sekarang</a>
+            <a href="https://wa.me/6281213128934?text=Halo%20SMPIT%20AN-NASHR,%20saya%20ingin%20bertanya%20tentang%20pendaftaran" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Hubungi via WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tentang Kami</h2>
+                <p>Mengenal lebih dekat SMPIT AN-NASHR</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Latar Belakang</h3>
+                    <p>Seiring perkembangan ilmu pengetahuan dan teknologi yang berpengaruh terhadap pembangunan peradaban manusia dewasa ini, maka diperlukan kualitas Sumber Daya Manusia (SDM) yang benar-benar komitmen dengan bersendikan pada nilai-nilai ketuhanan, moralitas, dan keadilan sehingga tercipta kehidupan yang manusiawi, damai dan sejahtera.</p>
+                    <p>Untuk mewujudkan hal tersebut Yayasan AN-NASHIRIYAH menyelenggarakan Sekolah Menengah Pertama Islam Terpadu (SMPIT) AN-NASHR.</p>
+                    <a href="#visi-misi" class="btn">Visi & Misi Kami</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/600x400" alt="Sekolah SMPIT AN-NASHR">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visi & Misi Section -->
+    <section class="section" id="visi-misi">
+        <div class="container">
+            <div class="section-title">
+                <h2>Visi & Misi</h2>
+                <p>Landasan pendidikan di SMPIT AN-NASHR</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-eye"></i></div>
+                    <h3>Visi</h3>
+                    <p>Menjadi Sekolah yang berstandar Nasional yang berbasis Iman dan Taqwa (IMTAQ), Ilmu Pengetahuan dan Teknologi (IPTEK).</p>
+                    <p><strong>Religius, Berbudaya, Cerdas dan Terampil</strong></p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
+                    <h3>Misi</h3>
+                    <ol>
+                        <li>Menyelenggarakan Pendidikan yang memperhatikan faktor-faktor unggulan dan peningkatan prestasi serta potensi</li>
+                        <li>Memberikan ketrampilan dasar dalam pengembangan kecakapan hidup (LIFE SKILL)</li>
+                        <li>Membekali Siswa dengan pemahaman syari'at Islam yang benar (AL-QUR'AN)</li>
+                        <li>Membekali siswa dengan Ilmu Pengetahuan dan Teknologi (IPTEK yang dapat mengembangkan diri secara berkelanjutan)</li>
+                    </ol>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Standar Kelulusan</h3>
+                    <ol>
+                        <li>Memenuhi syarat ketuntasan Belajar Minimal yang ditetapkan oleh sekolah untuk seluruh mata pelajaran</li>
+                        <li>Berakhlak terpuji, rajin ibadah dan dapat bersosialisasi</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fasilitas Section -->
+    <section class="section" id="fasilitas">
+        <div class="container">
+            <div class="section-title">
+                <h2>Fasilitas & Ekstrakurikuler</h2>
+                <p>Dukungan lengkap untuk proses belajar mengajar</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-building"></i></div>
+                    <h3>Sarana Prasarana</h3>
+                    <ul>
+                        <li>Gedung Milik Sendiri</li>
+                        <li>Memiliki Sarana Ibadah (MASJID)</li>
+                        <li>Perpustakaan</li>
+                        <li>Ruang Belajar</li>
+                        <li>Lab. Komputer/Internet</li>
+                        <li>OHP, Komputer, INFOCUS</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-futbol"></i></div>
+                    <h3>Ekstrakurikuler</h3>
+                    <ul>
+                        <li>Pramuka</li>
+                        <li>Marawis</li>
+                        <li>Mentoring</li>
+                        <li>Pencak Silat (Tapak Suci)</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-star"></i></div>
+                    <h3>Life Skill</h3>
+                    <ul>
+                        <li>Bahasa Arab</li>
+                        <li>T3 (Tahsin, Tahfidz, Tilawah)</li>
+                        <li>Tata Boga</li>
+                        <li>Ubudiyah</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pendaftaran Section -->
+    <section class="section" id="pendaftaran">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pendaftaran Siswa Baru</h2>
+                <p>Tahun Ajaran 2025 - 2026</p>
+            </div>
+            
+            <div class="registration-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Persyaratan</h3>
+                    <ol>
+                        <li>Surat Keterangan Kelakuan Baik dari Sekolah Asal</li>
+                        <li>Mengisi Formulir Pendaftaran</li>
+                        <li>Pas Foto Ukuran:
+                            <ul>
+                                <li>2×3 = 3 Lembar</li>
+                                <li>3×4 = 3 Lembar</li>
+                                <li>4×6 = 3 Lembar</li>
+                            </ul>
+                        </li>
+                        <li>Foto Copy STTB MI/SD yang dilegalisir 4 Lembar</li>
+                        <li>Foto Copy Raport kelas VI yang dilegalisir</li>
+                        <li>Foto Copy Kartu Keluarga 2 Lembar</li>
+                        <li>Foto Copy Akte Kelahiran 2 Lembar</li>
+                        <li>Melunasi Administrasi</li>
+                    </ol>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Jadwal Pendaftaran</h3>
+                    <p><strong>Gelombang I:</strong><br>
+                    01 Januari - 30 Maret 2025<br>
+                    (FREE UANG GEDUNG dan FREE SPP bagi peserta KIP)</p>
+                    <p><strong>Gelombang II:</strong><br>
+                    01 April - 30 Juni 2025<br>
+                    (Free uang Gedung)</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Keuntungan</h3>
+                    <ul>
+                        <li>Siswa Yatim Bebas Uang Pendidikan Sampai Lulus</li>
+                        <li>Gratis Uang Gedung</li>
+                        <li>Terakreditasi A</li>
+                        <li>Fasilitas Lengkap</li>
+                    </ul>
+                    <a href="https://wa.me/6281213128934?text=Halo%20SMPIT%20AN-NASHR,%20saya%20ingin%20mendaftarkan%20anak%20saya" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i> Daftar via WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak Section -->
+    <section class="section" id="kontak">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hubungi Kami</h2>
+                <p>Kami siap membantu Anda</p>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div>
+                        <h3>Alamat Sekolah</h3>
+                        <p>Jl. Lingkar Luar Pintu Air No. 21 Rt. 011/08<br>
+                        Cengkareng - Jakarta Barat 11730</p>
+                        <a href="https://maps.google.com/?q=SMPIT+AN-NASHR+Cengkareng" class="btn" target="_blank">Lihat di Peta</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                    <div>
+                        <h3>WhatsApp</h3>
+                        <p>0812 1312 8934</p>
+                        <a href="https://wa.me/6281213128934?text=Halo%20SMPIT%20AN-NASHR,%20saya%20ingin%20bertanya" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i> Chat Sekarang</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-route"></i></div>
+                    <div>
+                        <h3>Rute Kendaraan</h3>
+                        <ul>
+                            <li>Dari Terminal Kalideres: Naik Mikrolet M 13 turun di Pintu Air</li>
+                            <li>Dari Cengkareng: Naik Mikrolet Cengkareng-Juntatan Kamal turun di Pintu Air</li>
+                            <li>Dari Kamal: Naik Mikrolet turun di Yayasan An-Nashriyah</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Tentang SMPIT AN-NASHR</h3>
+                    <p>Sekolah Menengah Pertama Islam Terpadu dengan Akreditasi A yang berkomitmen mencetak generasi beriman, cerdas, dan terampil.</p>
+                    <a href="https://wa.me/6281213128934?text=Halo%20SMPIT%20AN-NASHR" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i> Hubungi Kami</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Link Cepat</h3>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#about">Tentang</a></li>
+                        <li><a href="#visi-misi">Visi Misi</a></li>
+                        <li><a href="#fasilitas">Fasilitas</a></li>
+                        <li><a href="#pendaftaran">Pendaftaran</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Kontak</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Jl. Lingkar Luar Pintu Air No. 21, Cengkareng</li>
+                        <li><i class="fab fa-whatsapp"></i> 0812 1312 8934</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 SMPIT AN-NASHR. Semua Hak Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const nav = document.getElementById('navbar');
+
+        mobileMenu.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a nav link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
